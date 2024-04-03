@@ -3,12 +3,14 @@ import type { TestingModule } from '@nestjs/testing';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { AppModule } from './app.module';
+import { AppService } from './app.service';
 
 describe(`Application`, () => {
   let app: INestApplication;
+  let moduleFixture: TestingModule;
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
@@ -23,5 +25,22 @@ describe(`Application`, () => {
       .expect((res) => {
         expect(res.text).toEqual(`Hello World !`);
       });
+  });
+
+  describe(`When the message changes`, () => {
+    beforeEach(() => {
+      const appService = moduleFixture.get(AppService);
+
+      jest.spyOn(appService, 'greet').mockReturnValue('GoodBye World !');
+    });
+
+    it(`Should greet`, () => {
+      return request(app.getHttpServer())
+        .get(`/`)
+        .expect(200)
+        .expect((res) => {
+          expect(res.text).toEqual(`GoodBye World !`);
+        });
+    });
   });
 });
