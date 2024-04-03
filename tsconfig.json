@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "target": "es2020",
+    "resolveJsonModule": true,
+    "strict": true,
+    "lib": ["ES2020"],
+    "types": ["node", "jest"]
+  },
+  "exclude": ["node_modules"]
+}
