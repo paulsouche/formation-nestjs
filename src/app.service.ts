@@ -1,5 +1,8 @@
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
 export class AppService {
   greet(): string {
-    throw new Error('Not yet implemented');
+    return 'Hello World !';
   }
 }
