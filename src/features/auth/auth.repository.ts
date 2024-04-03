@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 
 const accountId = Symbol();
 
-type accountId = string & typeof accountId;
+export type accountId = string & typeof accountId;
 
 const passwordHash = Symbol();
 

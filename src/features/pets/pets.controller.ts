@@ -6,11 +6,14 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreatePetDto, UpdatePetDto, petId } from './pets.dto';
 import { PetsRepository } from './pets.repository';
 
 @Controller('pets')
+@UseGuards(AuthGuard())
 export class PetsController {
   constructor(private readonly petsRepository: PetsRepository) {}
 

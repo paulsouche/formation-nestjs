@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import { accountId } from './auth.repository';
 
 export class CredentialsDto {
   @IsString()
@@ -14,4 +15,10 @@ export class JwtDto {
   @IsString()
   @IsNotEmpty()
   jwt!: string;
+}
+
+export class DeserializedJwtDto {
+  sub!: accountId;
+
+  exp!: number;
 }
