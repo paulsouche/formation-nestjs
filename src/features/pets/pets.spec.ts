@@ -45,6 +45,18 @@ describe(`Pets feature`, () => {
           });
         });
     });
+
+    describe(`And invalid pet`, () => {
+      it(`Should warn user about bad request`, () => {
+        return request(app.getHttpServer())
+          .post(`/pets`)
+          .send({
+            kind: 'Mouse',
+            name: 'Minnie',
+          })
+          .expect(400);
+      });
+    });
   });
 
   describe(`When getting a pet`, () => {
@@ -117,6 +129,18 @@ describe(`Pets feature`, () => {
               ...updatePetDto,
             });
           });
+      });
+
+      describe(`And invalid pet`, () => {
+        it(`Should warn user about bad request`, () => {
+          return request(app.getHttpServer())
+            .put(`/pets/${pet.id}`)
+            .send({
+              kind: 'Mouse',
+              name: 'Minnie',
+            })
+            .expect(400);
+        });
       });
     });
   });
